@@ -12,6 +12,21 @@ export default class Tree {
   delete(value) {
     delNode(this.root, value);
   }
+
+  find(value) {
+    // returns the node that matches the given value
+    let current = this.root;
+    while (current) {
+      if (value === current.data) return current;
+      if (value < current.data) {
+        current = current.left;
+      }
+      if (value > current.data) {
+        current = current.right;
+      }
+      return null;
+    }
+  }
 }
 
 function buildTree(array) {

@@ -9,6 +9,8 @@ myTree.insert(900);
 prettyPrint(myTree.root);
 myTree.delete(8);
 prettyPrint(myTree.root);
+console.log(myTree.find(9));
+console.log(myTree.find(8));
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
