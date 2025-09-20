@@ -7,6 +7,8 @@ myTree.insert(18);
 myTree.insert(23);
 myTree.insert(900);
 prettyPrint(myTree.root);
+myTree.delete(8);
+prettyPrint(myTree.root);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {

@@ -10,7 +10,7 @@ export default class Tree {
   }
 
   delete(value) {
-    // will need some logic re if the node has children or not
+    delNode(this.root, value);
   }
 }
 
@@ -35,6 +35,29 @@ function insertRecursive(root, value) {
   return root;
 }
 
+function delNode(root, value) {
+  //Base case
+  if (root === null) {
+    return root;
+  }
+
+  if (value < root.data) {
+    root.left = delNode(root.left, value);
+  } else if (value > root.data) {
+    root.right = delNode(root.right, value);
+  } else {
+    // if root matches the given value
+
+    if (root.left === null) return root.right;
+    if (root.right === null) return root.left;
+
+    let successor = getSuccessor(root);
+    root.data = successor.data;
+    root.right = delNode(root.right, successor.data);
+  }
+  return root;
+}
+
 function arrayToBST(array, start, end) {
   if (start > end) return null;
 
@@ -52,7 +75,15 @@ function arrayToBST(array, start, end) {
 
   return root;
 }
+// UTILITIES
 
+function getSuccessor(current) {
+  current = current.right;
+  while (current !== null && current.left !== null) {
+    current = current.left;
+  }
+  return current;
+}
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
