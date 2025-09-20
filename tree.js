@@ -4,12 +4,35 @@ export default class Tree {
   constructor(array) {
     this.root = buildTree(array);
   }
+
+  insert(value) {
+    insertRecursive(this.root, value);
+  }
+
+  delete(value) {
+    // will need some logic re if the node has children or not
+  }
 }
 
 function buildTree(array) {
   array.sort((a, b) => a - b); // Sort based on integer value not strings, Javascript!
   array = [...new Set(array)]; // get rid of duplicated data
   return arrayToBST(array, 0, array.length - 1);
+}
+
+function insertRecursive(root, value) {
+  if (root === null) {
+    return new Node(value);
+  }
+
+  if (value === root.data) {
+    return root;
+  } else if (value < root.data) {
+    root.left = insertRecursive(root.left, value);
+  } else if (value > root.data) {
+    root.right = insertRecursive(root.right, value);
+  }
+  return root;
 }
 
 function arrayToBST(array, start, end) {
