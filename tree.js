@@ -27,6 +27,23 @@ export default class Tree {
       return null;
     }
   }
+
+  levelOrderForEach(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Valid callback function is required");
+    }
+    if (this.root === null) return;
+
+    let queue = [this.root];
+
+    while (queue.length > 0) {
+      let current = queue[0];
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+      callback(current);
+      queue.shift();
+    }
+  }
 }
 
 function buildTree(array) {
@@ -55,13 +72,13 @@ function delNode(root, value) {
   if (root === null) {
     return root;
   }
-
+  // Traverse to find a matching node
   if (value < root.data) {
     root.left = delNode(root.left, value);
   } else if (value > root.data) {
     root.right = delNode(root.right, value);
   } else {
-    // if root matches the given value
+    // if root matches given value
 
     if (root.left === null) return root.right;
     if (root.right === null) return root.left;
