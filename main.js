@@ -16,6 +16,8 @@ myTree.levelOrderForEach(printData);
 myTree.inOrderForEach(printData);
 myTree.preOrderForEach(printData);
 myTree.postOrderForEach(printData);
+console.log(`Height of root: ${myTree.height(myTree.root.data)}`);
+console.log(`Height of 4: ${myTree.height(4)}`);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {

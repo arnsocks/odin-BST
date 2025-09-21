@@ -24,8 +24,8 @@ export default class Tree {
       if (value > current.data) {
         current = current.right;
       }
-      return null;
     }
+    return null;
   }
 
   levelOrderForEach(callback) {
@@ -64,6 +64,12 @@ export default class Tree {
       throw new Error("Valid callback function is required");
     }
     postOrderRecursive(callback, this.root);
+  }
+
+  height(value) {
+    // returns the height of the node with the given value;
+    let root = this.find(value);
+    return heightRecursive(root);
   }
 }
 
@@ -148,6 +154,13 @@ function postOrderRecursive(callback, root) {
   postOrderRecursive(callback, root.left);
   postOrderRecursive(callback, root.right);
   callback(root);
+}
+
+function heightRecursive(root) {
+  if (!root) return -1;
+  let lHeight = heightRecursive(root.left);
+  let rHeight = heightRecursive(root.right);
+  return Math.max(lHeight, rHeight) + 1;
 }
 // UTILITIES
 
