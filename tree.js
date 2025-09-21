@@ -44,6 +44,27 @@ export default class Tree {
       queue.shift();
     }
   }
+
+  inOrderForEach(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Valid callback function is required");
+    }
+    inOrderRecursive(callback, this.root);
+  }
+
+  preOrderForEach(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Valid callback function is required");
+    }
+    preOrderRecursive(callback, this.root);
+  }
+
+  postOrderForEach(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Valid callback function is required");
+    }
+    postOrderRecursive(callback, this.root);
+  }
 }
 
 function buildTree(array) {
@@ -106,6 +127,27 @@ function arrayToBST(array, start, end) {
   root.right = arrayToBST(array, mid + 1, end);
 
   return root;
+}
+
+function inOrderRecursive(callback, root) {
+  if (!root) return;
+  inOrderRecursive(callback, root.left);
+  callback(root);
+  inOrderRecursive(callback, root.right);
+}
+
+function preOrderRecursive(callback, root) {
+  if (!root) return;
+  callback(root);
+  preOrderRecursive(callback, root.left);
+  preOrderRecursive(callback, root.right);
+}
+
+function postOrderRecursive(callback, root) {
+  if (!root) return;
+  postOrderRecursive(callback, root.left);
+  postOrderRecursive(callback, root.right);
+  callback(root);
 }
 // UTILITIES
 

@@ -2,16 +2,20 @@ import Tree from "./tree.js";
 
 const data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let myTree = new Tree(data);
-prettyPrint(myTree.root);
-// myTree.insert(18);
-// myTree.insert(23);
-// myTree.insert(900);
+// prettyPrint(myTree.root);
+myTree.insert(18);
+myTree.insert(23);
+myTree.insert(900);
 // prettyPrint(myTree.root);
 // myTree.delete(8);
 // prettyPrint(myTree.root);
 // console.log(myTree.find(9));
 // console.log(myTree.find(8));
-myTree.levelOrderForEach(console.log);
+prettyPrint(myTree.root);
+myTree.levelOrderForEach(printData);
+myTree.inOrderForEach(printData);
+myTree.preOrderForEach(printData);
+myTree.postOrderForEach(printData);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
@@ -24,4 +28,12 @@ function prettyPrint(node, prefix = "", isLeft = true) {
   if (node.left !== null) {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
+}
+
+function printData(node) {
+  console.log(node.data);
+}
+
+function times2(node) {
+  node.data *= 2;
 }
