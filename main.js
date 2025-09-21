@@ -18,6 +18,8 @@ myTree.preOrderForEach(printData);
 myTree.postOrderForEach(printData);
 console.log(`Height of root: ${myTree.height(myTree.root.data)}`);
 console.log(`Height of 4: ${myTree.height(4)}`);
+console.log(`Depth of root: ${myTree.depth(myTree.root.data)}`);
+console.log(`Depth of 324: ${myTree.depth(324)}`);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {

@@ -71,6 +71,13 @@ export default class Tree {
     let root = this.find(value);
     return heightRecursive(root);
   }
+
+  depth(value) {
+    let target = this.find(value);
+    if (!target) return null;
+
+    return depthRecursive(this.root, target);
+  }
 }
 
 function buildTree(array) {
@@ -161,6 +168,21 @@ function heightRecursive(root) {
   let lHeight = heightRecursive(root.left);
   let rHeight = heightRecursive(root.right);
   return Math.max(lHeight, rHeight) + 1;
+}
+
+function depthRecursive(root, target) {
+  if (!root) return -1;
+
+  let dist = -1;
+
+  if (
+    root === target ||
+    (dist = depthRecursive(root.left, target)) >= 0 ||
+    (dist = depthRecursive(root.right, target)) >= 0
+  ) {
+    return dist + 1;
+  }
+  return dist;
 }
 // UTILITIES
 
