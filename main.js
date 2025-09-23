@@ -22,6 +22,8 @@ console.log(`Height of 4: ${myTree.height(4)}`);
 console.log(`Depth of root: ${myTree.depth(myTree.root.data)}`);
 console.log(`Depth of 324: ${myTree.depth(324)}`);
 console.log(`Tree is balanced? ${myTree.isBalanced()}`);
+myTree.rebalance();
+prettyPrint(myTree.root);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {

@@ -82,6 +82,15 @@ export default class Tree {
   isBalanced() {
     return balanceCheckRecursive(this.root) > 0;
   }
+
+  rebalance() {
+    let inOrder = [];
+    this.inOrderForEach((node) => {
+      inOrder.push(node.data);
+    });
+
+    this.root = buildTree(inOrder);
+  }
 }
 
 function buildTree(array) {
