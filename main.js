@@ -1,29 +1,57 @@
 import Tree from "./tree.js";
 
-const data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+// ====================
+// Testing driver code
+// ====================
+
+// 1) Create a BST from a random numbers < 100
+const data = randomArray(20);
 let myTree = new Tree(data);
-console.log(`Tree is balanced? ${myTree.isBalanced()}`);
-// prettyPrint(myTree.root);
-myTree.insert(18);
-myTree.insert(23);
-myTree.insert(900);
-// prettyPrint(myTree.root);
-// myTree.delete(8);
-// prettyPrint(myTree.root);
-// console.log(myTree.find(9));
-// console.log(myTree.find(8));
-prettyPrint(myTree.root);
+
+// 2) Confirm that the tree is balanced
+console.log(`Is balanced: ${myTree.isBalanced()}`);
+
+// 3) Print out all elements in level, pre, post and in order
+console.log("Level Order:");
 myTree.levelOrderForEach(printData);
-myTree.inOrderForEach(printData);
-myTree.preOrderForEach(printData);
+console.log("\nPreOrder:");
+myTree.levelOrderForEach(printData);
+console.log("\nPost order");
 myTree.postOrderForEach(printData);
-console.log(`Height of root: ${myTree.height(myTree.root.data)}`);
-console.log(`Height of 4: ${myTree.height(4)}`);
-console.log(`Depth of root: ${myTree.depth(myTree.root.data)}`);
-console.log(`Depth of 324: ${myTree.depth(324)}`);
+console.log("\nIn order");
+myTree.inOrderForEach(printData);
+
+// 4) Unbalance the array by adding several numbers > 100;
+[101, 160, 115, 104, 219, 199084].forEach((num) => myTree.insert(num));
+
+// 5) confirm that the tree is unbalanced
 console.log(`Tree is balanced? ${myTree.isBalanced()}`);
+
+// 6) rebalance the tree
 myTree.rebalance();
-prettyPrint(myTree.root);
+
+// 7) Confirm that the tree is now balanced
+console.log(`Tree is balanced? ${myTree.isBalanced()}`);
+
+// 8) print out all elements in level, pre, post and in order
+console.log("Level Order:");
+myTree.levelOrderForEach(printData);
+console.log("\nPreOrder:");
+myTree.levelOrderForEach(printData);
+console.log("\nPost order");
+myTree.postOrderForEach(printData);
+console.log("\nIn order");
+myTree.inOrderForEach(printData);
+
+// Utility functions
+function randomArray(length) {
+  let output = [];
+  for (let i = 0; i < length; i++) {
+    let n = Math.floor(Math.random() * 100);
+    output.push(n);
+  }
+  return output;
+}
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
@@ -40,8 +68,4 @@ function prettyPrint(node, prefix = "", isLeft = true) {
 
 function printData(node) {
   console.log(node.data);
-}
-
-function times2(node) {
-  node.data *= 2;
 }
