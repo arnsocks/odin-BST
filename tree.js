@@ -78,6 +78,10 @@ export default class Tree {
 
     return depthRecursive(this.root, target);
   }
+
+  isBalanced() {
+    return balanceCheckRecursive(this.root) > 0;
+  }
 }
 
 function buildTree(array) {
@@ -183,6 +187,21 @@ function depthRecursive(root, target) {
     return dist + 1;
   }
   return dist;
+}
+
+function balanceCheckRecursive(root) {
+  if (root === null) return 0;
+
+  // Find height of left and right subtrees
+  let lHeight = balanceCheckRecursive(root.left);
+  let rHeight = balanceCheckRecursive(root.right);
+  let diff = Math.abs(lHeight - rHeight);
+
+  // If either subtree is unbalanced or the diff is greater than 1 return -1
+  if (lHeight === -1 || rHeight === -1 || diff > 1) return -1;
+
+  // Return the height of the tree
+  return Math.max(lHeight, rHeight) + 1;
 }
 // UTILITIES
 

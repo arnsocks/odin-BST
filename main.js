@@ -2,6 +2,7 @@ import Tree from "./tree.js";
 
 const data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let myTree = new Tree(data);
+console.log(`Tree is balanced? ${myTree.isBalanced()}`);
 // prettyPrint(myTree.root);
 myTree.insert(18);
 myTree.insert(23);
@@ -20,6 +21,7 @@ console.log(`Height of root: ${myTree.height(myTree.root.data)}`);
 console.log(`Height of 4: ${myTree.height(4)}`);
 console.log(`Depth of root: ${myTree.depth(myTree.root.data)}`);
 console.log(`Depth of 324: ${myTree.depth(324)}`);
+console.log(`Tree is balanced? ${myTree.isBalanced()}`);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
